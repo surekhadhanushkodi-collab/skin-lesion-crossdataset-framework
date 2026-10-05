@@ -1,0 +1,17 @@
+# Default settings. Override on the command line, e.g.:
+#   python scripts/train.py --variant both --seed 1
+seed: 42
+variant: both          # base | sog | coloraug | both
+backbone: efficientnet_b0
+pretrained: true       # ImageNet weights (downloaded by torchvision on first use)
+epochs: 5
+lr: 0.0001
+weight_decay: 0.0001
+batch_size: 32
+image_size: 224
+num_workers: 2
+paths:
+  ham_root: data/ham10000
+  isic_root: data/isic2020
+  splits_dir: splits
+  out_dir: runs
