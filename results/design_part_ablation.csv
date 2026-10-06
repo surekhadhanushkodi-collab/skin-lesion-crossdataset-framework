@@ -1,0 +1,6 @@
+variant,val_auc,design_roc_auc,design_pr_auc
+original baseline,0.915,0.530,0.029
+base,0.916,0.544,0.030
+sog,0.904,0.641,0.081
+coloraug,0.902,0.684,0.089
+both,0.886,0.700,0.081
