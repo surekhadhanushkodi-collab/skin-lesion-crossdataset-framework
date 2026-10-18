@@ -10,7 +10,14 @@ def _efficientnet_b0(pretrained):
     return model
 
 
-BACKBONES = {"efficientnet_b0": _efficientnet_b0}
+def _resnet50(pretrained):
+    weights = models.ResNet50_Weights.IMAGENET1K_V2 if pretrained else None
+    model = models.resnet50(weights=weights)
+    model.fc = nn.Linear(model.fc.in_features, 1)
+    return model
+
+
+BACKBONES = {"efficientnet_b0": _efficientnet_b0, "resnet50": _resnet50}
 
 
 def build_model(backbone="efficientnet_b0", pretrained=True):

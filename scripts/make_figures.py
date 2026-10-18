@@ -27,13 +27,15 @@ plt.rcParams.update({"font.size": 9, "axes.spines.top": False, "axes.spines.righ
                      "axes.titlesize": 9, "legend.fontsize": 8, "figure.dpi": 100})
 
 
-def load_runs(runs_dir):
+def load_runs(runs_dir, backbone="efficientnet_b0"):
     runs = {}
     for d in sorted(Path(runs_dir).glob("*_seed*")):
         f = d / "result.json"
         if not f.exists():
             continue
         r = json.load(open(f))
+        if r.get("backbone", "efficientnet_b0") != backbone:
+            continue
         preds = {s: pd.read_csv(d / f"pred_{s}.csv") for s in SETS if (d / f"pred_{s}.csv").exists()}
         runs[(r["variant"], int(r["seed"]))] = {"result": r, "preds": preds}
     return runs
@@ -153,11 +155,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--runs", default="runs")
     ap.add_argument("--out", default="figures")
+    ap.add_argument("--backbone", default="efficientnet_b0")
     ap.add_argument("--ablation", default="results/design_part_ablation.csv")
     args = ap.parse_args()
-    runs = load_runs(args.runs)
+    runs = load_runs(args.runs, args.backbone)
     if not runs:
-        raise SystemExit(f"No runs found in {args.runs}")
+        raise SystemExit(f"No runs found in {args.runs} for backbone {args.backbone}")
     out = Path(args.out)
     fig_roc(runs, out)
     fig_pr(runs, out)

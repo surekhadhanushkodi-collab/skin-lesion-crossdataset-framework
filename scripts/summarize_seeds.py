@@ -15,14 +15,14 @@ def main():
     rows = []
     for f in sorted(Path(args.runs).glob("*/result.json")):
         r = json.load(open(f))
-        row = {"variant": r["variant"], "seed": r["seed"], "val_auc": r["val_auc"],
+        row = {"backbone": r.get("backbone", "efficientnet_b0"), "variant": r["variant"], "seed": r["seed"], "val_auc": r["val_auc"],
                "threshold": r["threshold"]}
         for s in ("ham_test", "isic_final"):
             for m, v in r.get(s, {}).items():
                 row[f"{s}_{m}"] = v
         rows.append(row)
     df = pd.DataFrame(rows)
-    summary = df.drop(columns="seed").groupby("variant").agg(["mean", "std"]).round(3)
+    summary = df.drop(columns="seed").groupby(["backbone", "variant"]).agg(["mean", "std"]).round(3)
     print(df.round(3).to_string(index=False))
     print()
     print(summary.T.to_string())

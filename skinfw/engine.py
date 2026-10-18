@@ -48,8 +48,11 @@ def run_training(cfg, overwrite=False):
     <out_dir>/<variant>_seed<seed>/ and returns the result dictionary.
     """
     variant, seed = cfg["variant"], int(cfg["seed"])
+    backbone = cfg["backbone"]
     p = cfg["paths"]
-    out = Path(p["out_dir"]) / f"{variant}_seed{seed}"
+    # EfficientNet-B0 keeps the original folder name; other backbones get a prefix
+    name = f"{variant}_seed{seed}" if backbone == "efficientnet_b0" else f"{backbone}_{variant}_seed{seed}"
+    out = Path(p["out_dir"]) / name
     if (out / "result.json").exists() and not overwrite:
         print(f"Already done: {out} (use --overwrite to redo)")
         return json.load(open(out / "result.json"))
@@ -108,7 +111,7 @@ def run_training(cfg, overwrite=False):
     model.load_state_dict(torch.load(out / "best_model.pt", map_location=device))
     pv, yv = predict(model, va_dl, device)
     thr = youden_threshold(yv, pv)
-    result = {"variant": variant, "seed": seed, "val_auc": best,
+    result = {"backbone": backbone, "variant": variant, "seed": seed, "val_auc": best,
               "threshold": thr, "history": history}
     pd.DataFrame({"id": va["image_id"], "label": yv, "prob": pv}).to_csv(
         out / "pred_ham_val.csv", index=False)

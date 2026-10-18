@@ -9,6 +9,7 @@ import yaml
 
 from skinfw.data import VARIANTS
 from skinfw.engine import run_training
+from skinfw.model import BACKBONES
 
 
 def main():
@@ -16,11 +17,12 @@ def main():
     ap.add_argument("--config", default="configs/default.yaml")
     ap.add_argument("--variant", choices=VARIANTS)
     ap.add_argument("--seed", type=int)
+    ap.add_argument("--backbone", choices=list(BACKBONES))
     ap.add_argument("--epochs", type=int)
     ap.add_argument("--overwrite", action="store_true")
     args = ap.parse_args()
     cfg = yaml.safe_load(open(args.config))
-    for k in ("variant", "seed", "epochs"):
+    for k in ("variant", "seed", "epochs", "backbone"):
         if getattr(args, k) is not None:
             cfg[k] = getattr(args, k)
     run_training(cfg, overwrite=args.overwrite)
