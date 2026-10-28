@@ -2,11 +2,23 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it using these metadata."
 title: "Skin Lesion Cross-Dataset Framework"
 type: software
-version: 0.1.0
+version: 1.0.0
 license: MIT
 authors:
-  - family-names: "TODO"        # TODO: confirm how your name should appear on the paper and the DOI
-    given-names: "TODO"
-    affiliation: "SRM Institute of Science and Technology"
+  - family-names: "Surekha"
+    given-names: "D."
+    email: "sd0395@srmist.edu.in"
+    affiliation: "Department of Electronics and Communication Engineering, SRM Institute of Science and Technology, Vadapalani Campus, Chennai, Tamil Nadu, India"
+  - family-names: "Rishi"
+    given-names: "Priti"
+    email: "pritir@srmist.edu.in"
+    affiliation: "Department of Electronics and Communication Engineering, SRM Institute of Science and Technology, Vadapalani Campus, Chennai, Tamil Nadu, India"
 repository-code: "https://github.com/surekhadhanushkodi-collab/skin-lesion-crossdataset-framework"
-abstract: "Open-source, reproducible pipeline for melanoma classification in dermoscopic images, with lesion- and patient-level splits and cross-dataset validation (HAM10000 to ISIC 2020)."
+abstract: "Open-source, reproducible pipeline for melanoma classification in dermoscopic images, with lesion-level and patient-level splits and cross-dataset validation (HAM10000 to ISIC 2020), and a test of colour normalisation and augmentation with two networks."
+keywords:
+  - melanoma
+  - dermoscopy
+  - external validation
+  - domain shift
+  - colour constancy
+  - reproducibility
