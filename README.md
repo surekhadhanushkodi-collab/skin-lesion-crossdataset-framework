@@ -1,9 +1,6 @@
 # Skin Lesion Cross-Dataset Framework
-
-An open-source, reproducible pipeline for classifying melanoma versus other skin lesions in dermoscopic images. It uses leakage-safe splits and **cross-dataset validation**: a model is trained on HAM10000 and tested on an independent dataset (ISIC 2020), and the pipeline checks whether colour normalisation and colour augmentation reduce the drop in performance.
-
+An open-source, reproducible pipeline for classifying melanoma versus other skin lesions in dermoscopic images. It uses leakage-safe splits and **cross-dataset validation**: a model is trained on HAM10000 and tested on an independent dataset (ISIC 2020), and the pipeline checks whether colour normalisation and colour augmentation reduce the drop in performance
    **Status:** version 1.0.1. The archived release and its DOI are listed below.
-
 - Archived release (Zenodo): https://doi.org/10.5281/zenodo.24052375
 - Paper: in preparation
 
