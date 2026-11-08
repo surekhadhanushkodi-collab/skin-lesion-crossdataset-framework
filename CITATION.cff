@@ -3,7 +3,6 @@ doi: 10.5281/zenodo.24052375
 message: "If you use this software, please cite it using these metadata."
 title: "Skin Lesion Cross-Dataset Framework"
 type: software
-version: 1.0.0
 license: MIT
 authors:
   - family-names: "Surekha"
