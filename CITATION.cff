@@ -1,4 +1,5 @@
-cff-version: 1.2.0
+version: 1.0.1
+doi: 10.5281/zenodo.24052375
 message: "If you use this software, please cite it using these metadata."
 title: "Skin Lesion Cross-Dataset Framework"
 type: software
